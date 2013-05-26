@@ -1,0 +1,60 @@
+/*
+Theme Name:     Pinboard - AI FU Berlin
+Theme URI:      http://amnesty-fu-berlin.de
+Template:       pinboard
+Version:        0.1.0
+*/
+
+@import url("../pinboard/style.css");
+
+#site-title #site-description {
+	line-height:50px;
+}
+
+#site-title {
+	margin: 0;
+	margin-left: 3.4%;
+	font-size:26px;
+}
+
+#site-title img {
+	margin: 0px;
+}
+
+#header #searchform {
+	margin:0px 3.4% 0 3px;
+}
+
+#header input#s:focus {
+	width:120px;
+}
+
+h1#header {
+	height:113px;
+}
+
+#social-media-icons {
+	margin-top: 0px;
+}
+
+#access li.current-menu-item > a {
+	background:#555;
+}
+
+#access li li a {
+	background: #333;
+	border-top:#444 1px solid;
+	border-bottom:#111 1px solid;
+}
+
+.widget-area a:hover {
+	color:#06f
+}
+
+#access .nav-show,
+#access a.nav-show:hover {
+	top: 0px;
+	right: 6.4%;
+}
+
+
