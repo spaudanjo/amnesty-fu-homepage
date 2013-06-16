@@ -22,7 +22,7 @@ Version:        0.1.0
 }
 
 #header #searchform {
-	margin:0px 3.4% 0 3px;
+	margin:15px 3.4% 0 3px;
 }
 
 #header input#s:focus {
@@ -34,7 +34,7 @@ h1#header {
 }
 
 #social-media-icons {
-	margin-top: 0px;
+	margin-top: 15px;
 }
 
 #access li.current-menu-item > a {
@@ -57,4 +57,63 @@ h1#header {
 	right: 6.4%;
 }
 
+form#searchform {margin-top:15px }
 
+
+
+header#header {background-color: #ff0;}
+section#content { width: 82%; }
+div#sidebar { width: 18%; }
+
+li.menu-item {
+    float: left;
+    padding:0.9em;
+}
+
+
+div#sidebar-header {
+    width:380px;
+    height:30px;
+    margin:3px 0 17px 0;
+}
+
+a.home {
+    font-family: Open Sans, sans-serif;
+    font-weight: normal;
+    letter-spacing:-1pt;
+}
+
+h1.page-title {
+   font-style:normal;
+   font-weight:bold;
+   text-transform: uppercase;
+   letter-spacing:normal;
+}
+
+div.category-description {
+    color: #333;
+    font-size: 110%;
+}
+
+.entry-title {
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 960px)
+{
+#sidebar .onecol {
+width: 100%;
+}
+}
+
+aside.widget_calendar_upcoming, aside.widget_calendar_today {
+    color:#333;
+}
+
+span.required {
+	right:-10% !important;
+}
+
+#commentform label {
+	width:auto
+}

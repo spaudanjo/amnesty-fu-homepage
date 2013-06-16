@@ -225,7 +225,7 @@ function pinboard_call_scripts() { ?>
 <?php
 }
 
-
+/* AIFU: minor design alterations*/
 function pinboard_current_location() {
 	global $pinboard_page_template;
 	if ( ! ( is_home() && ! is_paged() ) && ! is_singular() || isset( $pinboard_page_template ) ) {
@@ -237,15 +237,17 @@ function pinboard_current_location() {
 		} else
 			$archive = ''; ?>
 		<hgroup id="current-location">
-			<!-- <h6 class="prefix-text"><?php _e( 'Currently browsing', 'pinboard' ); ?> <?php echo $archive; ?></h6> -->
+			<!--<h6 class="prefix-text"><?php _e( 'Currently browsing', 'pinboard' ); ?> <?php echo $archive; ?></h6> -->
 			<<?php pinboard_title_tag( 'location' ); ?> class="page-title">
+                
 				<?php if( isset( $pinboard_page_template ) ) {
 					echo the_title();
 				} elseif( is_search() ) {
-					__( 'Search results for', 'pinboard' ) . ': &quot;' .  get_search_query() . '&quot;';
+					echo __( 'Search results for', 'pinboard' ) . ': &quot;' .  get_search_query() . '&quot;';
 				} elseif( is_author() ) {
 					$author = get_userdata( get_query_var( 'author' ) );
 					echo $author->display_name;
+
 				} elseif ( is_year() ) {
 					echo get_query_var( 'year' );
 				} elseif ( is_month() ) {
@@ -253,7 +255,7 @@ function pinboard_current_location() {
 				} elseif ( is_day() ) {
 					echo get_the_time( 'F j, Y' );
 				} else {
-					single_term_title( '' );
+                    single_term_title( '' );
 				}
 				if( is_paged() ) {
 					global $page, $paged;
@@ -273,19 +275,65 @@ function pinboard_current_location() {
 	}
 }
 
+/* AIFU: minor design alterations*/
 function pinboard_404() { ?>
 	<article class="post hentry column onecol" id="post-0">
-		<h2 class="entry-title"><?php _e( 'Seite nicht gefunden', 'pinboard' ) ?></h2>
+		<h2 class="entry-title"><?php _e( 'Content not found', 'pinboard' ) ?></h2>
 		<div class="entry-content">
-			<?php _e( 'Die gewünschte Seite konnte nicht gefunden werden.', 'pinboard' ); ?></p>
-			<?php if( is_active_sidebar( 7 ) ) : ?>
-				<?php # _e( 'Use the information below or try to seach to find what you\'re looking for:', 'pinboard' ); ?></p>
-			<?php endif; ?>
+			<?php _e( 'The content you are looking for could not be found.', 'pinboard' ); ?></p>
+			<!--<?php if( is_active_sidebar( 7 ) ) : ?>
+				<?php _e( 'Use the information below or try to seach to find what you\'re looking for:', 'pinboard' ); ?></p>
+			<?php endif; ?> -->
 			<?php dynamic_sidebar( 7 ); ?>
 		</div><!-- .entry-content -->
 	</article><!-- .post -->
 	<div class="clear"></div>
 <?php
+}
+
+function pinboard_post_thumbnail() {
+	if( has_post_thumbnail() ) : ?>
+		<figure class="entry-thumbnail">
+			<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				<?php the_post_thumbnail( ( pinboard_is_teaser() ? 'teaser-thumb' : 'blog-thumb' ) ); ?>
+			</a>
+
+        </figure>
+    <?php else :
+		// Retrieve the last image attached to the post
+		$args = array(
+			'numberposts' => 1,
+			'post_type' => 'attachment',
+			'post_mime_type' => 'image',
+			'post_parent' => get_the_ID()
+		);
+		$attachments = get_posts( $args );
+		if( count( $attachments ) ) {
+			$attachment = $attachments[0];
+			if( isset( $attachment ) && ! post_password_required() ) :
+				$image = wp_get_attachment_image_src( $attachment->ID, 'full' ); ?>
+				<figure>
+					<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+						<?php echo wp_get_attachment_image( $attachment->ID, 'image-thumb' ); ?>
+					</a>
+				</figure>
+			<?php endif;
+		} elseif( false !== pinboard_get_first_image() ) {
+			if( ! post_password_required() ) :
+				$image = pinboard_get_first_image();
+				if( false === $image[1] )
+					$image[1] = 695;
+				if( false === $image[2] )
+					$image[2] = 430;
+				$attachment = get_post( get_the_ID() ); ?>
+				<figure>
+					<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+						<img src="<?php echo $image[0]; ?>" alt="<?php the_title_attribute(); ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" />
+					</a>
+				</figure>
+			<?php endif;
+		}
+	endif;
 }
 
 
