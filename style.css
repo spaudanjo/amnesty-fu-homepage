@@ -1,119 +1,206 @@
 /*
 Theme Name:     Pinboard - AI FU Berlin
-Theme URI:      http://amnesty-fu-berlin.de
+Theme URI: 	http://github.com/spaudanjo/amnesty-fu-homepage
 Template:       pinboard
-Version:        0.1.0
+Version:        0.2.0
+Author: 	Manu
+Author URI:	http://tillmann.github.io
 */
 
 @import url("../pinboard/style.css");
 
-#site-title #site-description {
-	line-height:50px;
+/* current theme version has not specified this type, yet? */
+input[type="email"] {
+	padding:1.5%;
+	box-shadow:inset 1px 1px 5px rgba(0, 0, 0, .05);
+	background:#FCFCFC;
+	border:#EEE 1px solid;
+	color:#999;
+	font-family:"Droid Sans", sans-serif;
+	font-size:13px;
 }
-
-#site-title {
-	margin: 0;
-	margin-left: 3.4%;
-	font-size:26px;
-}
-
-#site-title img {
-	margin: 0px;
-}
-
-#header #searchform {
-	margin:15px 3.4% 0 3px;
-}
-
-#header input#s:focus {
-	width:120px;
-}
-
-h1#header {
-	height:113px;
-}
-
-#social-media-icons {
-	margin-top: 15px;
-}
-
-#access li.current-menu-item > a {
-	background:#555;
-}
-
-#access li li a {
-	background: #333;
-	border-top:#444 1px solid;
-	border-bottom:#111 1px solid;
-}
-
-.widget-area a:hover {
-	color:#06f
-}
-
-#access .nav-show,
-#access a.nav-show:hover {
-	top: 0px;
-	right: 6.4%;
-}
-
-form#searchform {margin-top:15px }
-
-
-
-header#header {background-color: #ff0;}
-section#content { width: 82%; }
-div#sidebar { width: 18%; }
-
-li.menu-item {
-    float: left;
-    padding:0.9em;
+input[type="email"]:focus {
+	background:#FFF;
+	border:#ddd 1px solid;
+	color:#333;
+	outline: none;
 }
 
 
-div#sidebar-header {
-    width:380px;
-    height:30px;
-    margin:3px 0 17px 0;
-}
-
-a.home {
-    font-family: Open Sans, sans-serif;
-    font-weight: normal;
-    letter-spacing:-1pt;
-}
-
+/* header formatting */
+/* what's that for?
 h1.page-title {
    font-style:normal;
    font-weight:bold;
    text-transform: uppercase;
    letter-spacing:normal;
 }
+*/
+h1#header {
+    height:113px;
+}
+header#header {
+    background-color: #ff0;
+}
+#site-title img {
+	margin: 0px;
+}
+#social-media-icons {
+	margin-top: 15px;
+}
+/* search box position/size */
+#header #searchform {
+	margin:15px 3.4% 0 3px;
+} 
+#header input#s:focus {
+	width:160px;
+}
+div#sidebar-header {
+    max-width:380px;
+    max-height:180px;
+    height:auto;
+    margin:3px 0 17px 0;
+}
+div#sidebar-header li.menu-item {
+    border: 0px;
+    float: left;
+    padding: 0.9em;
+}
 
+/* content area size */
+section#content {
+    width: 82%; 
+}
+div#sidebar {
+    width: 18%; 
+}
+
+/* color/position of navigation and nav-show button for small sizes */
+#access li.current-menu-item > a {
+	background:#555;
+}
+#access li li a {
+	background: #333;
+	border-top:#444 1px solid;
+	border-bottom:#111 1px solid;
+}
+#access .nav-show, #access a.nav-show:hover {
+    top: 10px ;
+    right: 10px;
+}
+
+/*
+a.home {
+    font-family: Open Sans, sans-serif;
+    font-weight: normal;
+    letter-spacing:-1pt;
+} */
+
+.entry-title {
+    text-transform: uppercase;
+}
+.widget-area a:hover {
+	color:#06f
+}
+
+@media screen and (max-width: 760px)
+{
+    section#content {
+	width: 100%;
+    }
+    #header form#searchform {
+        margin-left:auto;
+        margin-right:auto;
+        width:200px;
+    }
+    #header form#searchform input {
+        margin:0px
+    }
+    #sidebar-header li.menu-item {
+        font-size:9pt;
+        margin-left:1px;
+        margin-right:1px;
+    }
+    nav#access {
+        z-index:1000;
+    }
+    #access:target .menu {
+        margin-top:50px;
+    }
+    div#sidebar {
+        width:100% !important;
+    }
+    div#sidebar-bottom {
+        display:none;
+    }
+}
+
+@media screen and (max-width: 960px)
+{
+    #sidebar .onecol {
+        width: 100%;
+    }
+}
+
+/* color of the slider-title */
+#slider .entry-title a {
+	background: rgba(0, 0, 0, .75);
+}
+
+/* The description text for the AGs */
 div.category-description {
     color: #333;
     font-size: 110%;
 }
 
-.entry-title {
-    text-transform: uppercase;
+/* capitalization of navi menu */
+ul#menu-header li a {
+    text-transform: capitalize;
 }
 
-@media screen and (max-width: 960px)
-{
-#sidebar .onecol {
-width: 100%;
+/* size and color of calender widget elements */
+li.tribe-events-list-widget-events {
+   margin-bottom:10px !important;
 }
+li.tribe-events-list-widget-events h4.entry-title {
+   margin:1px; padding:1px; line-height:12px;
+}
+li.tribe-events-list-widget-events h4.entry-title a {
+   font-size:12px; line-height:12px;
+}
+li.tribe-events-list-widget-events div.duration {
+   color:#AAA;
+}
+ol.vcalendar{
+   margin-left:5px;
 }
 
-aside.widget_calendar_upcoming, aside.widget_calendar_today {
-    color:#333;
+/* we don't need this, our theme has its own read-more link for entries */
+a.tribe-events-read-more {
+   display:none;
+}
+
+/* hide url from rss-feed */
+a.wp-simple-rss-feed-url {
+   display:none;
+}
+
+/* sitemap, no distinct selector as super shortcode plugin's 
+ * menu shortcode seems broken.  */
+div.entry-content li.menu-item{
+   float:none;
+   margin:0px;
+   padding:1px;
+}
+
+h6.prefix-text {
+    display:none;
+}
+
+label {
+    width:inherit !important;
 }
 
 span.required {
-	right:-10% !important;
-}
-
-#commentform label {
-	width:auto
+    right:-5px !important;
 }

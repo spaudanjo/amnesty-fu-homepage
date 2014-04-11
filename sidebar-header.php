@@ -1,8 +1,10 @@
-<?php #if( is_active_sidebar( 1 ) ) : ?>
-<?php #else : ?><div style="float:right; width:380px"> 
-	<div id="sidebar-header" class="widget-area" role="complementary">
+<?php
+  /* modified so dynamic widget sidebar and searchform/social media buttons displayed at the same time */
+?>
+<div id="sidebar-header" class="widget-area" role="complementary">
+	<?php if( is_active_sidebar( 1 ) ) : ?>
 		<?php dynamic_sidebar( 1 ); ?>
-	</div><div class="clear"></div>
+	<?php endif; ?>
 	<?php get_search_form(); ?>
 	<?php if( '' != pinboard_get_option( 'facebook_link' ) || '' != pinboard_get_option( 'twitter_link' ) || '' != pinboard_get_option( 'pinterest_link' ) || '' != pinboard_get_option( 'vimeo_link' ) || '' != pinboard_get_option( 'youtube_link' ) || '' != pinboard_get_option( 'flickr_link' ) || '' != pinboard_get_option( 'googleplus_link' ) || '' != pinboard_get_option( 'dribble_link' ) || '' != pinboard_get_option( 'linkedin_link' ) ) : ?>
 		<div id="social-media-icons">
@@ -35,6 +37,6 @@
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>
+</div><!-- #sidebar-header -->
 
-<?php #endif; ?>
-<!-- #sidebar-header --> </div>
+
