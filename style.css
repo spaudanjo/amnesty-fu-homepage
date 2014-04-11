@@ -49,9 +49,9 @@ header#header {
 	margin-top: 15px;
 }
 /* search box position/size */
-#header #searchform {
-	margin:15px 3.4% 0 3px;
-} 
+#header #sidebar-header #searchform {
+	margin-top:15px;
+}
 #header input#s:focus {
 	width:160px;
 }
@@ -69,10 +69,10 @@ div#sidebar-header li.menu-item {
 
 /* content area size */
 section#content {
-    width: 82%; 
+    width: 82%;
 }
 div#sidebar {
-    width: 18%; 
+    width: 18%;
 }
 
 /* color/position of navigation and nav-show button for small sizes */
@@ -185,7 +185,7 @@ a.wp-simple-rss-feed-url {
    display:none;
 }
 
-/* sitemap, no distinct selector as super shortcode plugin's 
+/* sitemap, no distinct selector as super shortcode plugin's
  * menu shortcode seems broken.  */
 div.entry-content li.menu-item{
    float:none;
